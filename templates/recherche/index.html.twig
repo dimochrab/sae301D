@@ -1,0 +1,165 @@
+{# templates/recherche/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #87CEEB, #1E90FF);
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            color: white;
+            /* Votre style pour la barre de navigation ici */
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main-section {
+            width: 70%;
+        }
+
+        .aside-section {
+            width: 30%;
+        }
+
+        #result {
+            position: relative;
+            width: 100%;
+            max-width: 870px;
+            cursor: pointer;
+            overflow-y: auto;
+            max-height: 400px;
+            box-sizing: border-box;
+            z-index: 1001;
+            margin-top: 40px;
+        }
+
+        .card {
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: #f8f9fa; /* Couleur de fond pour les cartes */
+            border: 1px solid #dee2e6; /* Bordure des cartes */
+            border-radius: 4px; /* Coins arrondis */
+        }
+
+        .card-body {
+            padding: 10px;
+        }
+
+        .link-class:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <br /><br />
+    <div class="container" style="width:900px;">
+        <h2 align="center">Recherche</h2>
+        <h3 align="center">Consultez vos rendus</h3>
+        <br /><br />
+        <div align="center">
+            <input type="text" name="search" id="search" placeholder="Rechercher ..." class="form-control" />
+        </div>
+        <div id="result"></div>
+        <br />
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+            $('#search').keyup(function () {
+                $('#result').html('');
+                $('#state').val('');
+                var searchField = $('#search').val();
+                var expression = new RegExp(searchField, "i");
+
+                // Utilisez asset() pour générer le chemin vers le fichier JSON dans le dossier public
+                var events = {{ events|raw }}; // Récupère les données JSON depuis le contrôleur
+
+                $.each(events, function (key, value) {
+                    // Vérifiez si les propriétés existent avant d'y accéder
+                    var moduleExists = value.hasOwnProperty('title');
+                    var dateExists = value.hasOwnProperty('start');
+
+                    if ((moduleExists && value['title'].search(expression) !== -1) ||
+                        (dateExists && value['start'].search(expression) !== -1)) {
+
+                        $('#result').append('<div class="card"><div class="card-body"><h5 class="card-title">' + value['title'] + '</h5><p class="card-text">'  + ' ' + value['start'] + ' ' +  value['status'] + '</p></div></div>');
+                    }
+                });
+            });
+
+            $('#result').on('click', 'div.card', function () {
+                var click_text = $(this).text().split('|');
+                $('#search').val($.trim(click_text[0]));
+                $("#result").html('');
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Supposons que tu aies une fonction qui reçoit le nombre de nouvelles notifications
+            function updateNotificationCount(count) {
+                const notificationCountSpan = document.querySelector('.new-notifications');
+                notificationCountSpan.textContent = count;
+
+                // Ajoute une classe pour styliser différemment s'il y a des nouvelles notifications
+                if (count > 0) {
+                    notificationCountSpan.classList.add('has-notifications');
+                } else {
+                    notificationCountSpan.classList.remove('has-notifications');
+                }
+            }
+            const dateDuRendu = new Date('2023-11-28T00:00:00'); // Remplace avec la vraie date du rendu
+
+            // Calcule la différence en millisecondes entre les deux dates
+            const differenceEnMillisecondes = dateDuRendu - new Date();
+
+            // Calcule le nombre d'heures restantes
+            const heuresRestantes = differenceEnMillisecondes / (1000 * 60 * 60);
+
+            // Affiche une alerte si moins de 24 heures restantes
+            if (heuresRestantes < 24) {
+             $alerte=    alert('Le rendu est dans moins de 24 heures !');
+            }
+            // Exemple : Met à jour le nombre de nouvelles notifications après 3 secondes
+            setTimeout(function () {
+                if (heuresRestantes < 24) {
+                    updateNotificationCount(1);
+                    var notificationContainer = document.getElementById('notificationContainer');
+                    notificationContainer.innerHTML = 'Le rendu est dans moins de 24 heures ! ';
+
+                    // Affiche l'élément de notification
+                    notificationContainer.style.display = 'block';
+                }
+
+            }, 1000);
+        });
+    </script>
+{% endblock %}

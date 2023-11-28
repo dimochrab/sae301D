@@ -1,0 +1,54 @@
+{# templates/notification/index.html.twig #}
+
+<button class="notification-button" onclick="showNotifications()" >
+                    <svg width="23" height="40" viewBox="0 0 37 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="&#240;&#159;&#166;&#134; icon &#34;bell&#34;">
+                    <path id="Vector" d="M18.7002 40C21.3222 40 23.5142 38.332 24.3362 36H13.0642C13.8862 38.332 16.0782 40 18.7002 40ZM32.7002 25.172V16C32.7002 9.566 28.3302 4.146 22.4102 2.516C21.8242 1.04 20.3922 0 18.7002 0C17.0082 0 15.5762 1.04 14.9902 2.516C9.0702 4.148 4.7002 9.566 4.7002 16V25.172L1.2862 28.586C0.910195 28.96 0.700195 29.468 0.700195 30V32C0.700195 33.106 1.5942 34 2.7002 34H34.7002C35.8062 34 36.7002 33.106 36.7002 32V30C36.7002 29.468 36.4902 28.96 36.1142 28.586L32.7002 25.172Z" fill="black"/>
+                    </g>
+                    </svg>
+    <span class="badge" id="notification-badge"></span>
+</button>
+
+<div class="dropdown" id="notification-dropdown">
+    <ul id="notification-list"></ul>
+</div>
+<script>
+   function showNotifications() {
+    fetch('/notifications/data')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Réponse non OK: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('notification-badge').innerText = data.length;
+            const notificationList = document.getElementById('notification-list');
+            notificationList.innerHTML = '';
+
+            data.forEach(notification => {
+                const listItem = document.createElement('li');
+
+                // Vérifier que les propriétés nécessaires existent
+                const title = notification.title || 'Titre non défini';
+                const content = notification.content || 'Contenu non défini';
+
+                listItem.innerHTML = `<strong>${title}</strong>: ${content}`;
+                notificationList.appendChild(listItem);
+            });
+
+            document.getElementById('notification-button').classList.toggle('show');
+        })
+        .catch(error => console.error('Erreur lors de la récupération des notifications', error));
+}
+
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.notification-button')) {
+            const dropdown = document.getElementById('notification-button');
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        }
+    }
+</script>

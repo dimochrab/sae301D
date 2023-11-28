@@ -1,0 +1,17 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+# config/routes.yaml
+app_home:
+    path: /home
+    controller: App\Controller\HomeController::index
+# config/routes.yaml
+
+# config/routes.yaml
+
+app_mailer:
+    path: /mailer
+    controller: App\Controller\MailerController::sendEmail
+    methods: ['GET']

@@ -1,0 +1,28 @@
+{
+  "utilisateurs": [
+    {
+      "prenom": "mouad",
+      "nom": "el-khalifi",
+      "mdp": "123456",
+      "statut": "Etudiant"
+    },
+    {
+      "prenom": "Adem",
+      "nom": "BEN KHEDHER",
+      "mdp": "123456",
+      "statut": "Etudiant"
+    },
+    {
+      "prenom": "Ahamad",
+      "nom": "MOHAMMAD",
+      "mdp": "123456",
+      "statut": "Etudiant"
+    },
+    {
+      "prenom": "David",
+      "nom": "ANNEBICQUE",
+      "mdp": "123456",
+      "statut": "Professeur"
+    }
+  ]
+}

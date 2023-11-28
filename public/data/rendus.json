@@ -1,0 +1,34 @@
+{
+  "rendus": [
+    {
+      "matiere": "Motion-Design",
+      "professeur": "P12345",
+      "etudiants": [
+        {
+          "niveau": "MMIBUT2",
+          "parcours": "DEV-DI-FI",
+          "groupe_td": "AB"
+        }
+      ],
+      "date_rendu": "2023-12-01",
+      "type": "Controle",
+      "coefficient": 2,
+      "ue": "EXPRIMER"
+    },
+    {
+        "matiere": "Marketing",
+        "professeur": "P22345",
+        "etudiants": [
+          {
+            "niveau": "MMIBUT2",
+            "parcours": "DEV-DI-FI",
+            "groupe_td": "CD"
+          }
+        ],
+        "date_rendu": "2023-12-01",
+        "type": "Partiel",
+        "coefficient": 2,
+        "ue": "ENTREPRENDRE"
+      }
+  ]
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('js/script.js') }}"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        {% endblock %}
+    </head>
+    <body>
+        <nav>
+        <img src="" alt="logo">
+        <ul>
+            <li><a href="" class="nav-a">Home</a></li>
+            <li><a href="" class="nav-a">Recherche</a></li>
+            <li><a href="" class="nav-a">Historique</a></li>
+            <li><a href="" class="nav-a">Calendrier</a></li>
+            
+        </ul>
+        <div class="buttons">
+            <div class="notification-container">
+                <button class="notification-btn">                    <svg width="23" height="40" viewBox="0 0 37 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="&#240;&#159;&#166;&#134; icon &#34;bell&#34;">
+                            <path id="Vector" d="M18.7002 40C21.3222 40 23.5142 38.332 24.3362 36H13.0642C13.8862 38.332 16.0782 40 18.7002 40ZM32.7002 25.172V16C32.7002 9.566 28.3302 4.146 22.4102 2.516C21.8242 1.04 20.3922 0 18.7002 0C17.0082 0 15.5762 1.04 14.9902 2.516C9.0702 4.148 4.7002 9.566 4.7002 16V25.172L1.2862 28.586C0.910195 28.96 0.700195 29.468 0.700195 30V32C0.700195 33.106 1.5942 34 2.7002 34H34.7002C35.8062 34 36.7002 33.106 36.7002 32V30C36.7002 29.468 36.4902 28.96 36.1142 28.586L32.7002 25.172Z" fill="black"/>
+                        </g>
+                    </svg><span class="new-notifications">0</span></button>
+                <div class="notification-dropdown">
+                    <div id="notificationContainer" class="notification-item"></div>
+
+                </div>
+            </div>
+
+            <a href="" class="nav-a__out"><svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Login">
+            <path id="Stroke 1" d="M9.85936 8.51636H0.828613" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="Stroke 3" d="M7.66357 6.32935L9.85957 8.51635L7.66357 10.7033" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="Stroke 4" d="M4.37842 5.04173V4.34198C4.37842 2.81573 5.61517 1.57898 7.14217 1.57898H10.8052C12.3277 1.57898 13.5614 2.81273 13.5614 4.33523V12.6902C13.5614 14.2165 12.3239 15.454 10.7977 15.454H7.13392C5.61217 15.454 4.37842 14.2195 4.37842 12.6977V11.9912" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            </svg> Se déconnecter</a>
+            <a href="" class="nav-a__profil">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25.422" height="25.684" viewBox="0 0 155.422 164.684">
+                  <path id="User-icon-SVG-09ujkfges" d="M126.325,46.685A37.448,37.448,0,1,1,88.876,9.237a37.466,37.466,0,0,1,37.448,37.448M88.876,95.357a78.63,78.63,0,0,0-77.564,65.785,11.083,11.083,0,0,0,11.112,12.779h132.9a11.083,11.083,0,0,0,11.112-12.779A78.63,78.63,0,0,0,88.876,95.357" transform="translate(-11.166 -9.237)"/>
+                </svg></a>
+        </div>   
+        </nav>
+        {% block body %}{% endblock %}
+    </body>
+</html>

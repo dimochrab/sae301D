@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agenda{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #87CEEB, #1E90FF);
+            color: #333;
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <!-- Contenu de la page -->
+    <div class="content">
+        <h1>Agenda</h1>
+
+        <div id="calendar"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js" integrity="sha256-alsi6DkexWIdeVDEct5s7cnqsWgOqsh2ihuIZbU6H3I=" crossorigin="anonymous"></script>
+
+        {% block javascripts %}
+            <script>
+                // Fonction pour obtenir la couleur de la carte en fonction du statut
+                function getCardColor(statut) {
+                    switch (statut) {
+                        case "En Cours":
+                            return "#ffe045"; // Or
+                        case "Rendus":
+                            return "#2eff2e"; // Vert
+                        case "Non Rendus":
+                            return "#ff3131"; // Rouge
+                        default:
+                            return "#FFFFFF"; // Blanc par défaut
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    var calendarEl = document.getElementById('calendar');
+
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth', // Affiche le mois par défaut
+                        locale: 'fr', // Langue française
+                        firstDay: 1, // Premier jour de la semaine : lundi
+                        headerToolbar: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                        },
+                        buttonText: {
+                            today: 'Aujourd\'hui',
+                            month: 'Mois',
+                            week: 'Semaine',
+                            day: 'Jour'
+                        },
+
+                        // Affiche les événements
+                        events: [
+                            {
+                                "title": "WR301 & WR302 - English S3",
+                                "start": "2023-11-28T18:00:00",
+                                "backgroundColor": "#ffe045",
+                                "status": "En Cours"
+                            },
+                            {
+                                "title": "R312 - Integration web",
+                                "start": "2024-01-02T17:00:00",
+                                "backgroundColor": "#2eff2e",
+                                "status": "Rendus"
+                            },
+                            {
+                                "title": "WR308 - Écriture multimédia et narration",
+                                "start": "2024-04-15T23:59:00",
+                                "backgroundColor": "#ff3131",
+                                "status": "Non Rendus"
+                            },
+                            {
+                                "title": "WR313 - Développement Back",
+                                "start": "2024-02-10T20:00:00",
+                                "backgroundColor": "#ffe045",
+                                "status": "En Cours"
+                            },
+                            {
+                                "title": "WR310 - Culture artistique",
+                                "start": "2024-05-05T18:00:00",
+                                "backgroundColor": "#2eff2e",
+                                "status": "Rendus"
+                            },
+                            {
+                                "title": "WR303 UX design d'expérience",
+                                "start": "2024-03-20T17:00:00",
+                                "backgroundColor": "#ff3131",
+                                "status": "Non Rendus"
+                            },
+                            {
+                                "title": "WR309 Création et design interactif (UI)",
+                                "start": "2023-12-31T23:59:00",
+                                "backgroundColor": "#ffe045",
+                                "status": "En Cours"
+                            },
+                            {
+                                "title": "R304 - Culture numérique - J. Thomas",
+                                "start": "2024-06-14T20:00:00",
+                                "backgroundColor": "#2eff2e",
+                                "status": "Rendus"
+                            },
+                            {
+                                "title": "R315 - Maths matrices",
+                                "start": "2024-05-29T18:00:00",
+                                "backgroundColor": "#ff3131",
+                                "status": "Non Rendus"
+                            }
+                        ],
+                        eventClick: function(info) {
+                            alert('Nom du module: ' + info.event.title + '\nDate de rendu: ' + info.event.start.toLocaleDateString() + '\nHeure de rendu: ' + info.event.start.toLocaleTimeString() + '\nStatut: ' + info.event.extendedProps.status);
+                        },
+                    });
+
+                    calendar.render();
+                });
+            </script>
+        {% endblock %}
+    </div>
+
+{% endblock %}

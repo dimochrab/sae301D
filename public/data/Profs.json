@@ -1,0 +1,16 @@
+{
+  "professeurs": [
+    {
+      "adresse": "prof@mmi-troyes.fr",
+      "nom": "Dubois",
+      "prenom": "Pierre",
+      "identifiant": "P12345"
+    },
+    {
+      "adresse": "prof2@mmi-troyes.fr",
+      "nom": "Lefevre",
+      "prenom": "Marie",
+      "identifiant": "P22345"
+    }
+  ]
+}
