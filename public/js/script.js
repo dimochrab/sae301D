@@ -116,6 +116,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = '/home';
     });
 });
+
+
 function togglePasswordVisibilitySignin() {
     var passwordInputSignin1 = document.getElementById("password1_signin");
     var passwordCheckboxSignin = document.getElementById("revealPassword_signin");
