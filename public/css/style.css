@@ -877,3 +877,599 @@ form{
     border-radius: 50%;
     margin-left: 5px;
 }
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #87CEEB, #1E90FF);
+    color: #333;
+}
+
+.navbar {
+    background-color: #333;
+    padding: 15px;
+    color: white;
+    /* Votre style pour la barre de navigation ici */
+}
+
+.content {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-section {
+    width: 70%;
+}
+
+.aside-section {
+    width: 30%;
+}
+
+#result {
+    position: relative;
+    width: 100%;
+    max-width: 870px;
+    cursor: pointer;
+    overflow-y: auto;
+    max-height: 400px;
+    box-sizing: border-box;
+    z-index: 1001;
+    margin-top: 40px;
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #f8f9fa; /* Couleur de fond pour les cartes */
+    border: 1px solid #dee2e6; /* Bordure des cartes */
+    border-radius: 4px; /* Coins arrondis */
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.link-class:hover {
+    background-color: #f1f1f1;
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 955px;
+    max-width: 100%;
+    min-height: 552px;
+}
+
+.container p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.container span{
+    font-size: 12px;
+}
+
+.container a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container button{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.container button.hidden{
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.container input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    outline: none;
+}
+input#email,input#password{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    outline: none;
+    width: 100% ;
+}
+input#prenom ,input#nom{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    outline: none;
+    width: 40% ;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .sign-in{
+    transform: translateX(100%);
+}
+
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.social-icons{
+    margin: 20px 0;
+}
+
+.social-icons a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: #512da8;
+    height: 100%;
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.container.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .toggle-right{
+    transform: translateX(200%);
+}
+label{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+}
+.formBlockInputsBlock {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 6px;
+    background-color: #FFFFFF;
+}
+.formBlockTypeMail .formBlockInputsBlock input {
+    max-width: 110px;
+}
+.formDefault {
+    position: relative;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background-color: #dcdcdc;
+    border: 2px solid #000;
+    border-radius: 26px;
+    min-width: 30vw;
+}
+
+.formDefault button {
+    margin-top: 8px;
+}
+
+.formDefault .underButton {
+    padding: 12px 16px;
+    border-radius: 50px;
+}
+
+.formDefault .formBlockInputsBlock:focus-within {
+    outline: 2px solid #000;
+}
+
+.formDefault .divTitre {
+    width: fit-content !important;
+}
+
+.formDefault > div {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+}
+
+.formDefault input {
+    background-color: #fff;
+    border: none;
+    width: 100%;
+}
+
+.formDefault input:focus {
+    outline: none;
+}
+
+.formCenterBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formSVSBlock {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px !important;
+}
+
+.formBlockLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Profil */
+.formBlockTypeRadio {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Remplace var(--grup-2) */
+}
+
+.formBlockTypeRadio {
+    text-transform: uppercase;
+}
+
+.formBlockTypeRadio .formBlockInputsBlock {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 340px;
+}
+
+.formBlockTypeRadio .formBlockInputsBlock:focus-within {
+    outline: none;
+}
+
+.formBlockTypeRadio input {
+    position: absolute;
+    opacity: 0;
+}
+
+.formBlockTypeRadio label {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Remplace var(--grup-1) */
+    padding: 10px 16px; /* Remplace var(--grup-1) et var(--grup1) */
+    font-weight: 600;
+    background-color: #FFFFFF; /* Remplace var(--blanc) */
+    border-radius: 50px;
+    cursor: pointer;
+    outline: rgba(0, 0, 0, 0.1) 1px solid; /* Remplace var(--noirTransparent) */
+}
+
+.formBlockTypeRadio label:hover {
+    background-color: #512da8;
+    color: #FFFFFF;
+}
+
+.formBlockTypeRadio input:checked + label {
+    background-color: #512da8;
+    color: #FFFFFF;
+    outline: none;
+}
+
+/* Mail */
+.formBlockTypeMail {
+    display: flex;
+    flex-direction: column;
+}
+
+.formBlockTypeMail .formBlockLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Remplace var(--grup-1) */
+}
+
+.formBlockTypeMail .formBlockInputsBlock {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    background-color: #FFFFFF;
+    min-width: 446px;
+}
+
+.formBlockTypeMail .formBlockInputsBlock input {
+    border-bottom: rgba(0, 0, 0, 0.1) 1px solid; /* Remplace var(--noirTransparentPlus) */
+}
+
+.formBlockTypeMail .formBlockInputsBlock input:focus {
+    border-bottom: rgba(0, 0, 0, 0.5) 1px solid; /* Remplace var(--noirTransparent) */
+}
+
+.formBlockTypeMail .formBlockInputsBlock input {
+    max-width: 110px;
+}
+
+.formBlockTypeMail .formBlockInputsBlock p {
+    color: rgba(0, 0, 0, 0.5); /* Remplace var(--noirTransparent) */
+}
+
+.formBlockTypeMail .formBlockInputsBlock > div {
+    position: relative;
+}
+
+.formBlockTypeMail .formBlockInputsBlock > div p:nth-child(2) {
+    top: 0;
+    position: absolute;
+}
+
+/* Text */
+.formBlockTypeText {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+}
+
+.formBlockTypeText .formBlockInputsBlock {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    background-color: #FFFFFF;
+}
+
+.formBlockTypeText input {
+    width: 100%;
+}
+
+.formBlockTypeText .afficherMDP {
+    position: relative;
+    display: flex;
+}
+
+.afficherMDP .fa-eye,
+.afficherMDP .fa-eye-slash,
+.afficherMDPBasic .fa-eye,
+.afficherMDPBasic .fa-eye-slash {
+    position: absolute;
+    z-index: 50;
+    right: 0;
+    height: 100%;
+    width: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.afficherMDP input + label .fa-eye,
+.afficherMDPBasic input + label .fa-eye {
+    display: none;
+}
+
+.afficherMDP input:checked + label .fa-eye,
+.afficherMDPBasic input:checked + label .fa-eye {
+    display: flex;
+}
+
+.afficherMDP input:checked + label .fa-eye-slash,
+.afficherMDPBasic input:checked + label .fa-eye-slash {
+    display: none;
+}
+
+.afficherMDP input {
+    position: absolute;
+    opacity: 1;
+}
+
+.afficherMDPBasic {
+    position: relative;
+    display: flex;
+    width: fit-content;
+    padding-right: 8px; /* Remplace var(--grup) */
+    white-space: nowrap;
+}
+
+.afficherMDPBasic input {
+    opacity: 0;
+}
+
+/* Text Area */
+.formBlockTypeTextArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.formBlockTypeTextArea .formBlockInputsBlock {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 16px; /* Remplace var(--grup-2) */
+    padding: 16px 8px; /* Remplace var(--grup-2) et var(--grup) */
+    background-color: #FFFFFF; /* Remplace var(--blanc) */
+    border-radius: 16px;
+    outline: rgba(0, 0, 0, 0.1) 1px solid; /* Remplace var(--noirTransparent) */
+}
+
+.formBlockTypeTextArea textarea {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    resize: none;
+    outline: none;
+}
+
+.formDefault label > span,
+.formDefault p > span {
+    color: red;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #87CEEB, #1E90FF);
+    color: #333;
+}
+
+.content {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
