@@ -176,12 +176,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         if (utilisateurTrouve) {
                             // Récupérer les données de l'utilisateur connecté
-                            var nomUtilisateur = utilisateurTrouve.nom;
-                            var prenomUtilisateur = utilisateurTrouve.prenom;
-                            var statutUtilisateur = utilisateurTrouve.statut;
-
-                            alert('Connexion réussie');
-                            console.log('Nom: ' + nomUtilisateur + ', Prénom: ' + prenomUtilisateur + ', Statut: ' + statutUtilisateur);
+                            var utilisateurConnecte = {
+                                nomUtilisateur: utilisateurTrouve.nom,
+                                prenomUtilisateur: utilisateurTrouve.prenom,
+                                statutUtilisateur: utilisateurTrouve.statut,
+                            }
+                            //alert('Connexion réussie');//
+                            localStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateurConnecte));
                             window.location.href = '/profil';
                         } else {
                             showPopup("erreurPopup"); // Show the popup for incorrect credentials
@@ -237,3 +238,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 });
+
+//----------------------------------------------------------------------------------------------------------------------//
+
+var modal = document.getElementById("myModal");
+
+
+var btn = document.getElementById("myBtn");
+
+
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
