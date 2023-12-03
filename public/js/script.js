@@ -191,9 +191,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             var prenomUtilisateur = utilisateurTrouve.prenom;
                             var statutUtilisateur = utilisateurTrouve.statut;
 
-                            alert('Connexion réussie');
                             console.log('Nom: ' + nomUtilisateur + ', Prénom: ' + prenomUtilisateur + ', Statut: ' + statutUtilisateur);
-                            window.location.href = '/home';
+                            window.location.href = '/profil';
                         } else {
                             showPopup("erreurPopup"); // Show the popup for incorrect credentials
                             // Afficher les popups
@@ -243,6 +242,6 @@ document.addEventListener('DOMContentLoaded', function() {
         utilisateurs.push(nouvelUtilisateur);
         localStorage.setItem('utilisateurs', JSON.stringify(utilisateurs));
 
-        window.location.href = '/home';
+        window.location.href = '/profil';
     });
 });

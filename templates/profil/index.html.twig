@@ -506,7 +506,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         var rendusData = [
                             {
                                 "id": "1",
-                                "matiere": "Motion-Design",
+                                "matiere": "WR309",
                                 "excercice": "toy",
                                 "etudiants": [
                                     {
@@ -515,12 +515,12 @@ document.addEventListener('DOMContentLoaded', function () {
                                         "groupe_td": "AB"
                                     }
                                 ],
-                                "date_rendu": "2023-12-01"
+                                "date_rendu": "2023-12-03"
                             },
 
                             {
                                 "id": "2",
-                                "matiere": "Marketing",
+                                "matiere": "WR312",
                                 "etudiants": [
                                     {
                                         "niveau": "S3",
@@ -546,7 +546,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 "id": 2,
                                 "etudiant_id": 1,
                                 "rendu_id": 2,
-                                "statut": "non_rendu",
+                                "statut": "rendu",
                                 "note": null,
                                 "commentaire": "Pas encore rendu"
                             },
@@ -569,6 +569,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             var parcours =utilisateurDetails.parcours;
                             var groupeTd = utilisateurDetails.groupe_td;
                             var dateRendu = urlParams.get("dateRendu");
+
+                            var rendusLocalStorage = JSON.parse(localStorage.getItem('rendus')) || [];
+
+
                             document.getElementById('niveau3').placeholder = 'Niveau (' + utilisateurDetails.niveau + ')';
                             document.getElementById('parcours2').placeholder = 'Parcours (' + utilisateurDetails.parcours + ')';
                             document.getElementById('groupeTd').placeholder = 'Groupe TD (' + utilisateurDetails.groupe_td + ')';
@@ -587,9 +591,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             };
 
                             rendusData.push(nouveauRendu);
+                            localStorage.setItem('rendusData', JSON.stringify(rendusData));
                             console.log("Nouveau rendu ajouté :", nouveauRendu);
 
-                            // Rafraîchir automatiquement la page
                         }
 
 // Appeler la fonction pour ajouter un rendu lors du chargement de la page
@@ -603,9 +607,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             console.log("Etudiant Rendu pour", renduId, ":", etudiantRendu);
                             return etudiantRendu ? etudiantRendu.statut : "Non rendu";
                         }
+                        var rendusLocalStorage = JSON.parse(localStorage.getItem('rendus')) || [];
 
+                        var rendusData2 = rendusData.concat(rendusLocalStorage);
 
-                        var rendusUtilisateur = rendusData.filter(rendu => {
+                        var rendusUtilisateur = rendusData2.filter(rendu => {
                             return rendu.etudiants.some(etudiant => (
                                 etudiant.niveau === utilisateurDetails.niveau &&
                                 etudiant.parcours === utilisateurDetails.parcours &&
