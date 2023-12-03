@@ -1,0 +1,764 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Docline | Profil{% endblock %}
+
+{% block body %}
+
+<style>
+    body{
+        margin-top:20px;
+        background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+        color: #1a202c;
+        text-align: left;
+    }
+
+
+    .profil-rendu-historique__rendu{
+        color: #512da8;
+        padding: 10px 0 0 10px;
+        border-radius: 9px;
+        border: 4px solid #512da8;
+        display: flex;
+        justify-content: flex-start;
+        gap: 16%;
+        margin-bottom: 5px;
+
+
+    }
+    a{
+        margin: auto;
+    }
+
+    .block__title {
+        font-weight: bold
+    }
+    modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+    form{
+        width: 50%;
+        color: black;
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        margin: auto;
+        padding: 10px;
+        border-radius: 22px ;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+    }
+
+    .main-body {
+        padding: 65px;
+    }
+    .card {
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: 22px;
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1rem;
+        border-radius: 22px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+
+    }
+
+    .gutters-sm {
+        margin-right: -8px;
+        margin-left: -8px;
+    }
+
+    .gutters-sm>.col, .gutters-sm>[class*=col-] {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+    .mb-3, .my-3 {
+        margin-bottom: 1rem!important;
+    }
+
+    .bg-gray-300 {
+        background-color: #e2e8f0;
+    }
+    .h-100 {
+        height: 100%!important;
+    }
+    .shadow-none {
+        box-shadow: none!important;
+    }
+    .p::-webkit-scrollbar {
+        display: none;
+    }
+
+    a{
+        margin: auto;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    #renduForm {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    #renduForm h2 {
+        text-align: center;
+        color: #512da8;
+    }
+
+    #renduForm label {
+        display: block;
+        margin-top: 10px;
+        color: #333;
+    }
+
+    #renduForm input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        box-sizing: border-box;
+    }
+
+    #renduForm button {
+        background-color: #512da8;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    #renduForm button:hover {
+        background-color: #311b92;
+    }
+
+    #renduForm .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        color: #512da8;
+    }
+
+    #renduForm .close:hover {
+        color: #311b92;
+    }
+    /* Style général du formulaire */
+    #renduForm {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f4f4f4;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    /* Style du titre du formulaire */
+    #renduForm h2 {
+        color: #512da8;
+        text-align: center;
+    }
+
+    /* Style des labels */
+    label {
+        display: block;
+        margin-top: 10px;
+        color: #333;
+    }
+
+    /* Style des champs de saisie */
+    input,
+    select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Style du bouton de soumission */
+    button {
+        background-color: #512da8;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Style du bouton de fermeture (la croix) */
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        color: #aaa;
+    }
+
+    .close:hover {
+        color: #000;
+    }
+
+
+</style>
+<body>
+    <div class="container">
+        <div class="main-body">
+
+            <!-- Breadcrumb -->
+
+            <!-- /Breadcrumb -->
+
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img id="photoUtilisateur" alt="Admin" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4 id="nom"></h4><h4 id="prenom"></h4>
+
+                                    <p id="niveau2" class="text-secondary mb-1"></p><p id="parcours"  class="text-secondary mb-1"></p>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0">                                    <a id="myBtn">Ajouter un rendu</a>
+                                </h6>
+                                <span class="text-secondary" id="chifou"> vous avez déja N rendu(s)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">iD</h6>
+                                </div>
+                                <div id="identifiant" class="col-sm-9 text-secondary">
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" id="email">
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">NIVEAU</h6>
+                                </div>
+                                <div id="niveau" class="col-sm-9 text-secondary"></div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">GROUPE TD</h6>
+                                </div>
+                                <div  class="col-sm-9 text-secondary" id="groupe_td">
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">TP</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" id="groupe_tp">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row gutters-sm">
+                        <div class="col-sm mb-3">
+
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div id="rendusContainer"></div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+        </div>
+        <div id="myModal" class="modal">
+
+
+        <form id="renduForm">
+            <span class="close">&times;</span>
+
+            <h2>Formulaire d'Ajout de Rendu</h2>
+            <label for="matiere">Matière:</label>
+            <select id="matiere" name="matiere" required>
+                <option value="WS301D">Développer des parcours utilisateur au sein d'un système d'information</option>
+                <option value="WS302D">Produire des contenus pour une communication plurimédia</option>
+                <option value="WS303D">Concevoir des visualisations de données pour le web et une application interactive</option>
+                <option value="WS310">Portfolio</option>
+                <option value="WS3Bonif">Bonification (PAC, sport, RI, engagement étudiant,...)</option>
+                <option value="WS3Cordées">Cordées de la réussite</option>
+                <option value="WR301">Anglais</option>
+                <option value="WR302">Anglais Renforcé ou LV2</option>
+                <option value="WR303">Design d'expérience</option>
+                <option value="WR304">Culture numérique</option>
+                <option value="WR305D">Stratégies de communication et marketing</option>
+                <option value="WR306">Référencement</option>
+                <option value="WR307">Expression, communication et rhétorique</option>
+                <option value="WR308">Écriture multimédia et narration</option>
+                <option value="WR309D">Création et design interactif (UI)</option>
+                <option value="WR310">Culture artistique</option>
+                <option value="WR311">Audiovisuel et Motion design</option>
+                <option value="WR312">Développement Front et intégration</option>
+                <option value="WR313D">Développement Back</option>
+                <option value="WR314">Déploiement de services</option>
+                <option value="WR315">Représentation et traitement de l'information</option>
+                <option value="WR316">Gestion de projet</option>
+                <option value="WR317">Economie, gestion et droit du numérique</option>
+                <option value="WR318">Projet Personnel et Professionnel</option>
+                <option value="WR319D">Symfony</option>
+            </select>
+
+            <label for="exercice">Exercice:</label>
+            <input type="text" id="exercice" name="exercice" required>
+
+            <label for="niveau">Niveau:</label>
+            <input type="text" id="niveau3" name="niveau" readonly>
+
+            <label for="parcours">Parcours:</label>
+            <input type="text" id="parcours2" name="parcours" readonly>
+
+            <label for="groupeTd">Groupe TD:</label>
+            <input type="text" id="groupeTd" name="groupeTd" readonly>
+
+            <label for="dateRendu">Date de Rendu:</label>
+            <input type="date" id="dateRendu" name="dateRendu" required>
+
+            <button type="submit">Ajouter Rendu</button>
+        </form>
+        </div>
+    </div>
+    </div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    var utilisateurStocke = localStorage.getItem('utilisateurConnecte');
+
+    // Vérifier si les informations de base de l'utilisateur sont disponibles
+    if (utilisateurStocke) {
+        var utilisateurConnecte = JSON.parse(utilisateurStocke);
+        console.log('Contenu du localStorage :', localStorage.getItem('utilisateurConnecte'));
+
+        // Récupérer le reste des données depuis le fichier JSON
+        fetch('/data/utilisateurs.json')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Données depuis le fichier JSON :', data);
+
+                // Trouver l'utilisateur dans le JSON par son nom d'utilisateur
+                var utilisateurDetails = data.find(utilisateur => utilisateur.prenom === utilisateurConnecte.prenomUtilisateur);
+
+                if (utilisateurDetails) {
+                    // Utilisez les informations pour afficher le profil complet
+                    document.getElementById('nom').innerText = utilisateurDetails.nom;
+                    document.getElementById('prenom').innerText = utilisateurDetails.prenom;
+                    document.getElementById('email').innerText = utilisateurDetails.email;
+                    document.getElementById('identifiant').innerText = utilisateurDetails.identifiant;
+
+                    // Pour les étudiants
+                    if (utilisateurDetails.statut === 'etudiant') {
+                        document.getElementById('niveau').innerText = utilisateurDetails.niveau;
+                        document.getElementById('niveau2').innerText = utilisateurDetails.niveau;
+                        document.getElementById('parcours').innerText = utilisateurDetails.parcours;
+                        document.getElementById('groupe_td').innerText = utilisateurDetails.groupe_td;
+                        document.getElementById('groupe_tp').innerText = utilisateurDetails.groupe_tp;
+                        // Supposons que vous ayez récupéré les données de l'utilisateur
+
+                        var photoUtilisateur = document.getElementById('photoUtilisateur');
+                        photoUtilisateur.setAttribute('src', utilisateurDetails.img);
+
+                        // ... (votre code pour récupérer les données des rendus et de l'utilisateur connecté)
+
+                        var rendusData = [
+                            {
+                                "id": "1",
+                                "matiere": "Motion-Design",
+                                "excercice": "toy",
+                                "etudiants": [
+                                    {
+                                        "niveau": "S3",
+                                        "parcours": "DEV-DI-FI",
+                                        "groupe_td": "AB"
+                                    }
+                                ],
+                                "date_rendu": "2023-12-01"
+                            },
+
+                            {
+                                "id": "2",
+                                "matiere": "Marketing",
+                                "etudiants": [
+                                    {
+                                        "niveau": "S3",
+                                        "parcours": "DEV-DI-FI",
+                                        "groupe_td": "AB"
+                                    }
+                                ],
+                                "date_rendu": "2023-12-01"
+                            }
+                        ];
+
+                        // Récupérer les données des étudiants_rendus depuis le local storage
+                        var etudiantsRendusData = [
+                            {
+                                "id": 1,
+                                "etudiant_id": 1,
+                                "rendu_id": 1,
+                                "statut": "rendu",
+                                "note": 15,
+                                "commentaire": "Très bien réalisé"
+                            },
+                            {
+                                "id": 2,
+                                "etudiant_id": 1,
+                                "rendu_id": 2,
+                                "statut": "non_rendu",
+                                "note": null,
+                                "commentaire": "Pas encore rendu"
+                            },
+                            {
+                                "id": 3,
+                                "etudiant_id": 2,
+                                "rendu_id": 1,
+                                "statut": "rendu_en_retard",
+                                "note": 12,
+                                "commentaire": "Rendu en retard, mais acceptable"
+                            }
+                        ];
+
+                        function ajouterRendu() {
+                            // Récupérer les paramètres de l'URL
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var matiere = urlParams.get("matiere");
+                            var exercice = urlParams.get("exercice");
+                            var niveau = utilisateurDetails.niveau;
+                            var parcours =utilisateurDetails.parcours;
+                            var groupeTd = utilisateurDetails.groupe_td;
+                            var dateRendu = urlParams.get("dateRendu");
+                            document.getElementById('niveau3').placeholder = 'Niveau (' + utilisateurDetails.niveau + ')';
+                            document.getElementById('parcours2').placeholder = 'Parcours (' + utilisateurDetails.parcours + ')';
+                            document.getElementById('groupeTd').placeholder = 'Groupe TD (' + utilisateurDetails.groupe_td + ')';
+                            var nouveauRendu = {
+                                "id": (rendusData.length + 1).toString(),
+                                "matiere": matiere,
+                                "excercice": exercice,
+                                "etudiants": [
+                                    {
+                                        "niveau": niveau,
+                                        "parcours": parcours,
+                                        "groupe_td": groupeTd
+                                    }
+                                ],
+                                "date_rendu": dateRendu
+                            };
+
+                            rendusData.push(nouveauRendu);
+                            console.log("Nouveau rendu ajouté :", nouveauRendu);
+
+                            // Rafraîchir automatiquement la page
+                        }
+
+// Appeler la fonction pour ajouter un rendu lors du chargement de la page
+                        ajouterRendu();
+
+                        console.log("Rendus Data:", rendusData);
+                        console.log("Utilisateur Connecté:", utilisateurConnecte);
+
+                        function getStatut(renduId) {
+                            var etudiantRendu = etudiantsRendusData.find(er => er.rendu_id === renduId && er.etudiant_id === utilisateurConnecte.id);
+                            console.log("Etudiant Rendu pour", renduId, ":", etudiantRendu);
+                            return etudiantRendu ? etudiantRendu.statut : "Non rendu";
+                        }
+
+
+                        var rendusUtilisateur = rendusData.filter(rendu => {
+                            return rendu.etudiants.some(etudiant => (
+                                etudiant.niveau === utilisateurDetails.niveau &&
+                                etudiant.parcours === utilisateurDetails.parcours &&
+                                etudiant.groupe_td === utilisateurDetails.groupe_td
+                            ));
+                        });
+
+
+                        console.log("Utilisateur Connecté:", utilisateurConnecte);
+                        console.log("Rendus Data:", rendusData);
+                        console.log("Rendus Utilisateur:", rendusUtilisateur);
+
+
+                        // Afficher les rendus dans le modèle
+
+
+                        var rendusHTML = "";
+
+                        rendusUtilisateur.forEach(rendu => {
+                            console.log("Rendu en cours de traitement :", rendu);
+
+                            rendusHTML += `
+        <div class="profil-rendu-historique__rendu">
+            <div class="block1">
+                <p class="block__title">Module </p>
+                <p class="block__info">${rendu.matiere}</p>
+            </div>
+            <div class="block2">
+                <p class="block__title">Date de rendu </p>
+                <p class="block__info">${rendu.date_rendu}</p>
+            </div>
+            <div class="block3">
+                <p class="block__title">Statut </p>
+                <p class="block__info">${getStatut(rendu.id)}</p>
+            </div>
+            <a id="myBtn${rendu.id}" class="button__deatils">
+                <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                 viewBox="0 0 330 330" xml:space="preserve">
+                                                    <path id="XMLID_2_" d="M165,0C74.019,0,0,74.019,0,165s74.019,165,165,165s165-74.019,165-165S255.981,0,165,0z M225.606,175.605
+                                                        l-80,80.002C142.678,258.535,138.839,260,135,260s-7.678-1.464-10.606-4.394c-5.858-5.857-5.858-15.355,0-21.213l69.393-69.396
+                                                        l-69.393-69.392c-5.858-5.857-5.858-15.355,0-21.213c5.857-5.858,15.355-5.858,21.213,0l80,79.998
+                                                        c2.814,2.813,4.394,6.628,4.394,10.606C230,168.976,228.42,172.792,225.606,175.605z"/></svg>
+            </a>
+        </div>
+  <div id="myModal${rendu.id}" class="modal">
+
+                                <div class="modal-content">
+                    <span class="close1">&times;</span>
+                    <h1>Details du rendu</h1>
+                    <div class="details-rendu__info">
+                        <div class="details-rendu-block1">
+                            <p class="block__title">Module </p>
+                            <p class="block__info">${rendu.matiere}</p>
+                        </div>
+                        <div class="details-rendu-block2">
+                            <p class="block__title">Date de rendu </p>
+                            <p class="block__info">${rendu.date_rendu}</p>
+                        </div>
+                        <div class="details-rendu-block3">
+                            <p class="block__title">Statut </p>
+                            <p class="block__info">${getStatut(rendu.id)}</p>
+                        </div>
+                        <div class="details-rendu-block4">
+                            <p class="block__title">Exercice </p>
+                            <p class="block__info">${rendu.excercice}</p>
+                        </div>
+                        <div class="details-rendu-block6">
+                            <p class="block__title">Commentaire</p>
+                            <p class="block__info">${rendu.commentaire}</p>
+                        </div>
+                        <div class="details-rendu-block5">
+                            <p class="block__title">Note</p>
+                            <p class="block__info">${rendu.note || 'N/A'} / 20</p>
+                        </div>
+                    </div>
+                </div>
+</div>`;
+                            console.log("HTML en cours de construction :", rendusHTML);
+                            var rendusContainer = document.getElementById("rendusContainer");
+                            rendusContainer.innerHTML = rendusHTML;
+
+                            rendusUtilisateur.forEach(rendu => {
+                                var modal = document.getElementById("myModal" + rendu.id);
+                                var btn = document.getElementById("myBtn" + rendu.id);
+                                var span = document.querySelector(".close" + rendu.id);
+
+                                if (btn && modal && span) {
+                                    btn.onclick = function () {
+                                        modal.style.display = "block";
+                                    };
+
+                                    span.onclick = function () {
+                                        modal.style.display = "none";
+                                    };
+
+                                    window.onclick = function (event) {
+                                        if (event.target == modal) {
+                                            modal.style.display = "none";
+                                        }
+                                    };
+                                } else {
+                                    console.error("Un ou plusieurs éléments n'ont pas été trouvés.");
+                                }
+
+
+                            });
+
+;
+
+                        })
+
+                        // ... (autres manipulations si nécessaires)
+                    } else {
+                        console.error('Statut utilisateur non reconnu :', utilisateurDetails.statut);
+                    }
+                } else {
+                    console.error('Utilisateur non trouvé dans le fichier JSON.');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des données JSON :', error);
+            });
+    } else {
+        // Rediriger vers la page de connexion si aucune information n'est disponible
+        window.location.href = '/connexion';
+    }
+
+
+    var modal = document.getElementById("myModal");
+
+
+    var btn = document.getElementById("myBtn");
+
+
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});
+</script>
+
+</body>
+
+{% endblock %}
+

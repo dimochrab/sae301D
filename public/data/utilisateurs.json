@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "password": "123456",
+    "nom": "Ben khedher",
+    "prenom": "Adem",
+    "email": "adem.ben-khedher@etudiant.univ-reims.fr",
+    "identifiant": "A12345",
+    "img": "https://intranetv3.iut-troyes.univ-reims.fr/media/cache/profil/upload/etudiants/22209492.jpg",
+    "statut": "etudiant",
+    "niveau": "S3",
+    "parcours": "DEV-DI-FI",
+    "groupe_td": "AB",
+    "groupe_tp": "A"
+  },
+  {
+    "id": "2",
+    "password": "123456",
+    "nom": "MOHAMMAD",
+    "prenom": "Ahamad",
+    "email": "utilisateur2@example.com",
+    "identifiant": "A12345",
+    "img": "https://intranetv3.iut-troyes.univ-reims.fr/media/cache/profil/upload/etudiants/22202609.jpg",
+    "statut": "etudiant",
+    "niveau": "S3",
+    "parcours": "DEV-DI-FI",
+    "groupe_td": "CD",
+    "groupe_tp": "C"
+  },
+  {
+    "id": "3",
+    "password": "motdepasse2",
+    "nom": "Nom2",
+    "prenom": "Prenom2",
+    "email": "utilisateur2@example.com",
+    "identifiant": "A12345",
+    "img": "https://intranetv3.iut-troyes.univ-reims.fr/media/cache/profil/upload/etudiants/22216831.jpg",
+    "statut": "etudiant",
+    "niveau": "BUT MMI 1",
+    "parcours": "DEV-DI-FI",
+    "groupe_td": "AB",
+    "groupe_tp": "B"
+  },
+  {
+    "password": "motdepasse3",
+    "nom": "Nom3",
+    "prenom": "Prenom3",
+    "email": "utilisateur3@example.com",
+    "identifiant": "A12345",
+    "statut": "prof"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "etudiants_rendus": [
+    {
+      "id": 1,
+      "etudiant_id": 1,
+      "rendu_id": 1,
+      "statut": "rendu",
+      "note": 15,
+      "commentaire": "Très bien réalisé"
+    },
+    {
+      "id": 2,
+      "etudiant_id": 1,
+      "rendu_id": 2,
+      "statut": "non_rendu",
+      "note": null,
+      "commentaire": "Pas encore rendu"
+    },
+    {
+      "id": 3,
+      "etudiant_id": 2,
+      "rendu_id": 1,
+      "statut": "rendu_en_retard",
+      "note": 12,
+      "commentaire": "Rendu en retard, mais acceptable"
+    }
+  ]
+}
