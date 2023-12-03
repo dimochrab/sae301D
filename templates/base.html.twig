@@ -9,26 +9,243 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
         {% block stylesheets %}
+            <style>
+                body {
+                    font-family: 'Roboto', sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    color: #333;
+                }
+
+                .content {
+                    max-width: 1400px;
+                    margin: 78px auto;
+                    padding: 20px;
+                    background-color: white;
+                    border-radius: 22px;
+                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+                }
+                body{
+                    margin-top:20px;
+                    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+                    color: #1a202c;
+                    text-align: left;
+                }
+                nav{
+                    justify-content: center;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    display: flex;
+                    margin: 0;
+                    gap: 10px;
+                }
+            ul{
+            display: inline-flex;
+            align-items: flex-start;
+            gap: 52px;
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            margin-left: 100px;
+            }
+
+            li a {
+            color: white;
+            text-decoration: none;
+            margin: 5px;
+            display: flex;
+            padding: 10px ;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+                background-color:#512da8;
+                border-radius: 20px;
+                font-weight: bold;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+
+
+            }
+            li a:hover{
+            color: #512da8;
+                background-color: white;
+            border-radius: 22px;
+                font-weight: bold;
+
+
+            }
+                .nav-a__logo{
+                    margin: 0;
+                }
+                .nav-a__out{
+                    background-color:#512da8;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 22px;
+                    margin: 0;
+                    padding: 12px;
+                    font-weight: bold;
+
+                }
+
+                .nav-a__out:hover{
+                    background-color: transparent;
+                    color: #512da8;
+                    border: 2px solid #512da8;
+
+
+                }
+                .nav-a__wing{
+                    margin: 0;
+                }
+
+                .buttons{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                }
+                .notification-button {
+                    position: relative;
+                }
+
+                .badge {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    background-color: red;
+                    color: white;
+                    border-radius: 50%;
+                    padding: 0.3em 0.6em;
+                }
+
+                .dropdown {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    background-color: #f9f9f9;
+                    min-width: 160px;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                    z-index: 1;
+                }
+
+                .dropdown ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0.5em;
+                }
+
+                .dropdown.show {
+                    display: block;
+                }
+
+                .notification-container {
+                    position: relative;
+                }
+
+                .notification-btn {
+                    padding: 10px;
+                    background: transparent;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                .notification-dropdown {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    min-width: 200px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                    z-index: 1;
+                }
+
+                .notification-item {
+                    padding: 10px;
+                    border-bottom: 1px solid #ddd;
+                    cursor: pointer;
+                }
+
+                .notification-item:last-child {
+                    border-bottom: none;
+                }
+
+                .notification-container:hover .notification-dropdown {
+                    display: block;
+                }
+                .new-notifications {
+                    background-color: #e74c3c;
+                    color: #fff;
+                    padding: 3px 8px;
+                    border-radius: 50%;
+                    margin-left: 5px;
+                }
+            </style>
+
         {% endblock %}
 
         {% block javascripts %}
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
             <script src="{{ asset('js/script.js') }}"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+            <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            // Supposons que tu aies une fonction qui reçoit le nombre de nouvelles notifications
+            function updateNotificationCount(count) {
+            const notificationCountSpan = document.querySelector('.new-notifications');
+            notificationCountSpan.textContent = count;
+
+            // Ajoute une classe pour styliser différemment s'il y a des nouvelles notifications
+            if (count > 0) {
+            notificationCountSpan.classList.add('has-notifications');
+            } else {
+            notificationCountSpan.classList.remove('has-notifications');
+            }
+            }
+            const dateDuRendu = new Date('2023-11-28T00:00:00'); // Remplace avec la vraie date du rendu
+
+            // Calcule la différence en millisecondes entre les deux dates
+            const differenceEnMillisecondes = dateDuRendu - new Date();
+
+            // Calcule le nombre d'heures restantes
+            const heuresRestantes = differenceEnMillisecondes / (1000 * 60 * 60);
+
+            // Affiche une alerte si moins de 24 heures restantes
+
+            // Exemple : Met à jour le nombre de nouvelles notifications après 3 secondes
+            setTimeout(function () {
+            if (heuresRestantes < 24) {
+            updateNotificationCount(1);
+            var notificationContainer = document.getElementById('notificationContainer');
+            notificationContainer.innerHTML = 'Le rendu est dans moins de 24 heures ! ';
+
+            // Affiche l'élément de notification
+            notificationContainer.style.display = 'flex';
+            }
+
+            }, 1000);
+            });
+
+            </script>
         {% endblock %}
     </head>
     <header>
-        <nav>
-        <img src="" alt="logo">
+        <nav style="display: flex">
+        <img src="{{ asset('css/logo.png') }}" alt="logo">
         <ul>
-            <li><a href="" class="nav-a">Profile</a></li>
-            <li><a href="" class="nav-a">Recherche</a></li>
-            <li><a href="" class="nav-a">Calendrier</a></li>
+            <li><a href="/profil" class="nav-a">Mon profil</a></li>
+            <li><a href="/recherche" class="nav-a">Recherche</a></li>
+            <li><a href="/calendrier" class="nav-a">Calendrier</a></li>
             
         </ul>
         <div class="buttons">
             <div class="notification-container">
-                <button class="notification-btn">                    <svg width="23" height="40" viewBox="0 0 37 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button class="notification-btn">                    <svg width="23" height="40" color="#512da8" viewBox="0 0 37 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="&#240;&#159;&#166;&#134; icon &#34;bell&#34;">
                             <path id="Vector" d="M18.7002 40C21.3222 40 23.5142 38.332 24.3362 36H13.0642C13.8862 38.332 16.0782 40 18.7002 40ZM32.7002 25.172V16C32.7002 9.566 28.3302 4.146 22.4102 2.516C21.8242 1.04 20.3922 0 18.7002 0C17.0082 0 15.5762 1.04 14.9902 2.516C9.0702 4.148 4.7002 9.566 4.7002 16V25.172L1.2862 28.586C0.910195 28.96 0.700195 29.468 0.700195 30V32C0.700195 33.106 1.5942 34 2.7002 34H34.7002C35.8062 34 36.7002 33.106 36.7002 32V30C36.7002 29.468 36.4902 28.96 36.1142 28.586L32.7002 25.172Z" fill="black"/>
                         </g>
@@ -38,6 +255,10 @@
 
                 </div>
             </div>
+            <a href="/profil" class="nav-a__profil">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25.422" height="25.684" viewBox="0 0 155.422 164.684">
+                    <path id="User-icon-SVG-09ujkfges" d="M126.325,46.685A37.448,37.448,0,1,1,88.876,9.237a37.466,37.466,0,0,1,37.448,37.448M88.876,95.357a78.63,78.63,0,0,0-77.564,65.785,11.083,11.083,0,0,0,11.112,12.779h132.9a11.083,11.083,0,0,0,11.112-12.779A78.63,78.63,0,0,0,88.876,95.357" transform="translate(-11.166 -9.237)"/>
+                </svg></a>
 
             <a href="" class="nav-a__out"><svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Login">
@@ -46,10 +267,7 @@
             <path id="Stroke 4" d="M4.37842 5.04173V4.34198C4.37842 2.81573 5.61517 1.57898 7.14217 1.57898H10.8052C12.3277 1.57898 13.5614 2.81273 13.5614 4.33523V12.6902C13.5614 14.2165 12.3239 15.454 10.7977 15.454H7.13392C5.61217 15.454 4.37842 14.2195 4.37842 12.6977V11.9912" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </g>
             </svg> Se déconnecter</a>
-            <a href="" class="nav-a__profil">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25.422" height="25.684" viewBox="0 0 155.422 164.684">
-                  <path id="User-icon-SVG-09ujkfges" d="M126.325,46.685A37.448,37.448,0,1,1,88.876,9.237a37.466,37.466,0,0,1,37.448,37.448M88.876,95.357a78.63,78.63,0,0,0-77.564,65.785,11.083,11.083,0,0,0,11.112,12.779h132.9a11.083,11.083,0,0,0,11.112-12.779A78.63,78.63,0,0,0,88.876,95.357" transform="translate(-11.166 -9.237)"/>
-                </svg></a>
+
         </div>   
         </nav>
         {% block body %}{% endblock %}
