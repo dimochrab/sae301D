@@ -1,3 +1,4 @@
+{# templates/recherche/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Recherche{% endblock %}
@@ -10,7 +11,7 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+*            color: #333;
         }
 
         .navbar {
@@ -150,12 +151,31 @@
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
             </svg>
             <input type="text" name="search" id="search" placeholder="Rechercher vos rendus par date, module..." class="form-control" />
+            <button style="margin-top: 0" id="sortButton" class="btn btn-primary" style="margin-left: 10px;">Trier par date</button>
+            <button style="margin-top: 0" id="filterButton" class="btn btn-info" style="margin-left: 10px;">Filtrer par module</button>
         </div>
         <div id="result"></div>
+
+        <!-- Ajout de la modal pour le filtre par module -->
+        <div class="modal fade" id="moduleFilterModal" tabindex="-1" role="dialog" aria-labelledby="moduleFilterModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="moduleFilterModalLabel">Filtrer par module</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Contenu du select pour le filtre par module -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <br />
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -243,17 +263,25 @@
 
                 // Fonction pour trier du plus proche au plus loin par date
                 $('#sortButton').on('click', function () {
-                    var sortedData = data.sort(function (a, b) {
+                    // Créer une copie du tableau avant de le trier
+                    var sortedData = [...data];
+
+                    // Trier la copie du tableau
+                    sortedData.sort(function (a, b) {
                         return new Date(a['Date de rendu']) - new Date(b['Date de rendu']);
                     });
 
+                    // Effacer le contenu actuel
                     $('#result').html('');
+
+                    // Afficher les cartes triées
                     $.each(sortedData, function (key, value) {
                         $('#result').append('<div class="card"><div class="card-body"><h5 class="card-title">' + value['Nom de module'] + '</h5><p class="card-text">' + "Date de rendu : " + value['Date de rendu'] + ' </p><p class="card-text">' + 'Heure de rendu : ' + value['Heure de rendu'] + '</p> <p class="card-text">' + ' Statut : ' + value['Statut'] + '</p></div></div>');
                     });
                 });
 
-                // Fonction pour filtrer par module
+
+                // Fonction pour afficher le filtre par module
                 $('#filterButton').on('click', function () {
                     var uniqueModules = [...new Set(data.map(item => item['Nom de module']))];
 
