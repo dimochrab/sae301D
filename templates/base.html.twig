@@ -230,8 +230,29 @@
             }
 
             }, 1000);
-            });
 
+            function deconnexion() {
+                // Réinitialiser les données de l'utilisateur connecté ou effectuer d'autres actions nécessaires
+                // Par exemple, vous pouvez supprimer les données de l'utilisateur de votre application
+                // et rediriger l'utilisateur vers la page de connexion.
+
+
+                // Rediriger l'utilisateur vers la page de connexion
+                window.location.href = '/connexion';
+            }
+
+            var deconnexionBtn = document.getElementById('deconnexionBtn');
+
+            // Ajoutez un gestionnaire d'événements pour détecter le clic sur le bouton de déconnexion
+            if (deconnexionBtn) {
+                deconnexionBtn.addEventListener('click', function (event) {
+                    event.preventDefault(); // Empêchez le comportement par défaut du lien (la redirection)
+
+                    // Appelez la fonction de déconnexion
+                    deconnexion();
+                });
+            }
+            });
             </script>
         {% endblock %}
     </head>
@@ -261,7 +282,7 @@
                     <path id="User-icon-SVG-09ujkfges" d="M126.325,46.685A37.448,37.448,0,1,1,88.876,9.237a37.466,37.466,0,0,1,37.448,37.448M88.876,95.357a78.63,78.63,0,0,0-77.564,65.785,11.083,11.083,0,0,0,11.112,12.779h132.9a11.083,11.083,0,0,0,11.112-12.779A78.63,78.63,0,0,0,88.876,95.357" transform="translate(-11.166 -9.237)"/>
                 </svg></a>
 
-            <a href="" class="nav-a__out"><svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a href="" id="deconnexionBtn" class="nav-a__out"><svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Login">
             <path id="Stroke 1" d="M9.85936 8.51636H0.828613" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path id="Stroke 3" d="M7.66357 6.32935L9.85957 8.51635L7.66357 10.7033" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
