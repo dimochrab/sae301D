@@ -231,27 +231,36 @@
 
             }, 1000);
 
-            function deconnexion() {
-                // Réinitialiser les données de l'utilisateur connecté ou effectuer d'autres actions nécessaires
-                // Par exemple, vous pouvez supprimer les données de l'utilisateur de votre application
-                // et rediriger l'utilisateur vers la page de connexion.
+                function deconnexion() {
+                    // Réinitialiser les données de l'utilisateur connecté ou effectuer d'autres actions nécessaires
+                    // Par exemple, vous pouvez supprimer les données de l'utilisateur de votre application
 
+                    // Rediriger l'utilisateur vers la page de connexion
+                    window.location.href = '/connexion';
+                }
 
-                // Rediriger l'utilisateur vers la page de connexion
-                window.location.href = '/connexion';
-            }
+// Fonction pour empêcher le retour en arrière après la déconnexion
+                function preventBackAfterLogout() {
+                    // Remplace l'état actuel de l'historique avec la page de connexion
+                    history.replaceState(null, null, '/connexion');
 
-            var deconnexionBtn = document.getElementById('deconnexionBtn');
+                    // Ajoute un gestionnaire d'événements pour détecter les changements d'état de l'historique
+                    window.addEventListener('popstate', function (event) {
+                        // Remplace l'état actuel de l'historique avec la page de connexion
+                        history.replaceState(null, null, '/connexion');
+                    });
+                }
 
-            // Ajoutez un gestionnaire d'événements pour détecter le clic sur le bouton de déconnexion
-            if (deconnexionBtn) {
-                deconnexionBtn.addEventListener('click', function (event) {
-                    event.preventDefault(); // Empêchez le comportement par défaut du lien (la redirection)
+// Gestionnaire d'événements pour le clic sur le bouton de déconnexion
+                var deconnexionBtn = document.getElementById('deconnexionBtn');
 
-                    // Appelez la fonction de déconnexion
-                    deconnexion();
-                });
-            }
+                if (deconnexionBtn) {
+                    deconnexionBtn.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        deconnexion();
+                        preventBackAfterLogout(); // Appel de la fonction pour empêcher le retour en arrière
+                    });
+                }
             });
             </script>
         {% endblock %}

@@ -1,7 +1,8 @@
-
-<title>{% block title %}Docline{% endblock %}</title>
-<link rel="icon" href="{{ asset('css/icon2.png') }}" style="color: white">
-
+{% block head %}
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+{% endblock %}
 {% block stylesheets %}
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
@@ -578,23 +579,6 @@
             cursor: pointer;
         }
 
-        .cookie-popup {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px; /* Remplacez par votre espacement */
-            position: fixed;
-            bottom: -100%;
-            right: 5vw;
-            padding: 15px; /* Remplacez par votre espace intérieur */
-            background-color: white; /* Remplacez par votre couleur de fond */
-            border: 2px solid black; /* Remplacez par votre couleur de bordure */
-            z-index: 9999;
-            transition: bottom 0.5s ease;
-            border-radius: 20px; /* Remplacez par votre rayon de bordure */
-            max-width: 900px;
-            width: fit-content;
-        }
 
         .cookie-popup p {
             font-size: 20px; /* Remplacez par votre taille de police */
@@ -656,19 +640,20 @@
             left: 50%;
         }
 
+
     </style>
 
 
 {% endblock %}
-{% block body %}
 
+{% block body %}
     <body>
 
     <div class="container" id="container" >
 
         <div class="form-container sign-up">
-            <form action="../../public/php/get_connected_user.php" method="POST">
-                <h1>Create Account</h1>
+            <form  method="POST">
+                <h1>S'INSCRIRE</h1>
                 <!-- <div class="formCenterBlock"> -->
                 <div class="formBlockTypeRadio">
                     <div class=" formBlockLabel">
@@ -677,11 +662,11 @@
                     </div>
                     <div class="formBlockInputsBlock">
                         <div>
-                            <input type="radio" name="statut" value="Etudiant" id="etudiant_signup" class="formInputCellInput" />
+                            <input type="radio" name="statut" value="Etudiant" id="etudiant_signup" class="formInputCellInput" required />
                             <label for="etudiant_signup"><i class="fas fas fa-solid fa-graduation-cap"></i>Etudiant</label>
                         </div>
                         <div>
-                            <input type="radio" name="statut" value="Professeur" id="prof_signup" class="formInputCellInput" />
+                            <input type="radio" name="statut" value="Professeur" id="prof_signup" class="formInputCellInput" required/>
                             <label for="prof_signup"><i class="fas fas fa-solid fa-chalkboard-user"></i>Professeur</label>
                         </div>
                     </div>
@@ -694,9 +679,9 @@
                     </div>
 
                     <div class="formBlockInputsBlock">
-                        <input type="text" placeholder="prénom" name="prenom" id="prenom_signup" />
+                        <input type="text" placeholder="prénom" name="prenom" id="prenom_signup" required />
                         <p>.</p>
-                        <input type="text" placeholder="nom" name="nom" id="nom_signup" />
+                        <input type="text" placeholder="nom" name="nom" id="nom_signup" required />
                         <div>
                             <p id="afficheEtudiant_signup">@etudiant.univ-reims.fr</p>
                             <p id="afficheProf_signup" style="opacity: 0">@univ-reims.fr</p>
@@ -710,9 +695,9 @@
                     </div>
                     <div class="formBlockInputsBlock">
                         <!-- Change the field type to "password" -->
-                        <input type="password" id="password1_signup" name="mdp" />
+                        <input type="password" id="password1_signup" name="mdp" required />
                         <div class="afficherMDP">
-                            <input type="checkbox" id="revealPassword_signup" onclick="togglePasswordVisibilitySignup()">
+                            <input type="checkbox" id="revealPassword_signup" onclick="togglePasswordVisibilitySignup()"  >
                             <label for="revealPassword_signup">
                                 <i class="fas fa-regular fa-eye"></i>
                                 <i class="fas fa-regular fa-eye-slash"></i>
@@ -725,7 +710,7 @@
         </div>
 
         <div class="form-container sign-in">
-            <form action="../../public/php/get_connected_user.php" method="POST">
+            <form  method="POST">
                 <h1>SE CONNECTER</h1>
 
                 <!-- <div class="formCenterBlock"> -->
@@ -736,11 +721,11 @@
                     </div>
                     <div class="formBlockInputsBlock">
                         <div>
-                            <input type="radio" name="statut" value="Etudiant" id="etudiant_signin" class="formInputCellInput" />
+                            <input type="radio" name="statut" value="Etudiant" id="etudiant_signin" class="formInputCellInput" required />
                             <label for="etudiant_signin"><i class="fas fa-solid fa-graduation-cap"></i>Etudiant</label>
                         </div>
                         <div>
-                            <input type="radio" name="statut" value="Professeur" id="prof_signin" class="formInputCellInput" />
+                            <input type="radio" name="statut" value="Professeur" id="prof_signin" class="formInputCellInput" required />
                             <label for="prof_signin"><i class="fas fa-solid fa-chalkboard-user"></i>Professeur</label>
                         </div>
                     </div>
@@ -753,9 +738,9 @@
                     </div>
 
                     <div class="formBlockInputsBlock">
-                        <input type="text" placeholder="prénom" name="prenom" id="prenom_signin" />
+                        <input type="text" placeholder="prénom" name="prenom" id="prenom_signin" required />
                         <p>.</p>
-                        <input type="text" placeholder="nom" name="nom" id="nom_signin" />
+                        <input type="text" placeholder="nom" name="nom" id="nom_signin" required />
                         <div>
                             <p id="afficheEtudiant_signin">@etudiant.univ-reims.fr</p>
                             <p id="afficheProf_signin" style="opacity: 0">@univ-reims.fr</p>
@@ -768,7 +753,7 @@
                         <label for="password1_signin">Mot de passe</label>
                     </div>
                     <div class="formBlockInputsBlock">
-                        <input type="password" id="password1_signin" name="mdp" />
+                        <input type="password" id="password1_signin" name="mdp" required />
                         <div class="afficherMDP">
                             <input type="checkbox" id="revealPassword_signin" onclick="togglePasswordVisibilitySignin()">
                             <label for="revealPassword_signin">
@@ -786,13 +771,13 @@
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back!</h1>
-                    <p>Enter your personal details to use all of site features</p>
+                    <h1>Docline</h1>
+                    <p>Inscrivez-vous pour consulter vos rendus de travaux</p>
                     <button class="hidden" id="login">SE CONNECTER</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all of site features</p>
+                    <h1>Docline</h1>
+                    <p>Connectez-vous pour consulter vos rendus de travaux</p>
                     <button class="hidden" id="register">JE M'INSCRIS</button>
                 </div>
             </div>
@@ -809,7 +794,6 @@
 {% endblock %}
 
     {% block javascripts %}
-        <!-- Move the script block to the end of the body -->
         <script src="{{ asset('js/script.js') }}"></script>
         <script src="{{ asset('js/info_erreur.js') }}"></script>
         <script src="https://kit.fontawesome.com/ebc72dbf59.js" crossorigin="anonymous"></script>

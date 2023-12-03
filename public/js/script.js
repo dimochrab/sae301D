@@ -20,6 +20,7 @@ function togglePasswordVisibilitySignup() {
     }
 }
 
+// Section 2: Fonctions liées aux popups
 function showPopup(popupId) {
     var popup = document.getElementById(popupId);
     if (popup) {
@@ -37,28 +38,38 @@ function removePopup(popupId) {
 function closePopup(popupId) {
     removePopup(popupId);
 }
+
+// Section 3: Fonctions liées à la déconnexion
 function deconnexion() {
     // Réinitialiser les données de l'utilisateur connecté ou effectuer d'autres actions nécessaires
     // Par exemple, vous pouvez supprimer les données de l'utilisateur de votre application
-    // et rediriger l'utilisateur vers la page de connexion.
-
 
     // Rediriger l'utilisateur vers la page de connexion
     window.location.href = '/connexion';
 }
 
-var deconnexionBtn = document.getElementById('deconnexionBtn');
+// Fonction pour empêcher le retour en arrière après la déconnexion
+function preventBackAfterLogout() {
+    // Remplace l'état actuel de l'historique avec la page de connexion
+    history.replaceState(null, null, '/connexion');
 
-// Ajoutez un gestionnaire d'événements pour détecter le clic sur le bouton de déconnexion
-if (deconnexionBtn) {
-    deconnexionBtn.addEventListener('click', function (event) {
-        event.preventDefault(); // Empêchez le comportement par défaut du lien (la redirection)
-
-        // Appelez la fonction de déconnexion
-        deconnexion();
+    // Ajoute un gestionnaire d'événements pour détecter les changements d'état de l'historique
+    window.addEventListener('popstate', function (event) {
+        // Remplace l'état actuel de l'historique avec la page de connexion
+        history.replaceState(null, null, '/connexion');
     });
 }
 
+// Gestionnaire d'événements pour le clic sur le bouton de déconnexion
+var deconnexionBtn = document.getElementById('deconnexionBtn');
+
+if (deconnexionBtn) {
+    deconnexionBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        deconnexion();
+        preventBackAfterLogout(); // Appel de la fonction pour empêcher le retour en arrière
+    });
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Le script est en cours d\'exécution.');
@@ -176,14 +187,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         if (utilisateurTrouve) {
                             // Récupérer les données de l'utilisateur connecté
-                            var utilisateurConnecte = {
-                                nomUtilisateur: utilisateurTrouve.nom,
-                                prenomUtilisateur: utilisateurTrouve.prenom,
-                                statutUtilisateur: utilisateurTrouve.statut,
-                            }
-                            //alert('Connexion réussie');//
-                            localStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateurConnecte));
-                            window.location.href = '/profil';
+                            var nomUtilisateur = utilisateurTrouve.nom;
+                            var prenomUtilisateur = utilisateurTrouve.prenom;
+                            var statutUtilisateur = utilisateurTrouve.statut;
+
+                            alert('Connexion réussie');
+                            console.log('Nom: ' + nomUtilisateur + ', Prénom: ' + prenomUtilisateur + ', Statut: ' + statutUtilisateur);
+                            window.location.href = '/home';
                         } else {
                             showPopup("erreurPopup"); // Show the popup for incorrect credentials
                             // Afficher les popups
@@ -233,10 +243,6 @@ document.addEventListener('DOMContentLoaded', function() {
         utilisateurs.push(nouvelUtilisateur);
         localStorage.setItem('utilisateurs', JSON.stringify(utilisateurs));
 
-        window.location.href = '/profil';
+        window.location.href = '/home';
     });
-
-
 });
-
-//----------------------------------------------------------------------------------------------------------------------//
