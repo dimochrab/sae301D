@@ -1,45 +1,71 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}DocLine | Mentions Légales{% endblock %}
 
 {% block body %}
-        <title>Mentions Légales</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 20px;
-            }
-            h1 {
-                color: #333;
-            }
-            p {
-                line-height: 1.5;
-            }
-        </style>
-    </head>
-    <body>
-    <h1>Mentions Légales</h1>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px auto;
+            line-height: 1.6;
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        main{
+            background-color: white;
+            border-radius: 22px;
+            max-width: 1100px; /* Nouvelle propriété pour limiter la largeur */
+            margin: 100px auto;
+            padding: 72px;
+        }
+
+        h1, h2 {
+            color: #512da8;
+        }
+
+        h2 {
+            margin-top: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        p:last-child {
+            margin-top: 20px;
+            font-style: italic;
+            color: #ccc;
+        }
+    </style>
+    <main>
+    <h1>Mentions Légales - DocLine</h1>
 
     <h2>Éditeur du site :</h2>
-    <p>Nom de l'entreprise / Organisation<br>
-        Adresse de l'entreprise<br>
-        Numéro de téléphone : XXX-XXX-XXXX<br>
-        Email : contact@votreentreprise.com</p>
+    <p>DocLine - Rendus Universitaires | L'iut de Troyes<br>
+        Adresse de l'entreprise<br>9 Rue Quebec, 10430 Rosières-prés-Troyes<br>
+        Numéro de téléphone : 01 23 45 67 89<br>
+        Email : contact@docline.com</p>
 
     <h2>Hébergement :</h2>
     <p>Nom de l'hébergeur<br>
         Adresse de l'hébergeur<br>
-        Numéro de téléphone de l'hébergeur : XXX-XXX-XXXX</p>
+        Numéro de téléphone de l'hébergeur : 01 23 45 67 89</p>
 
     <h2>Responsable de la publication :</h2>
     <p>Nom du responsable de la publication<br>
         Adresse du responsable<br>
-        Email du responsable : responsable@votreentreprise.com</p>
+        Email du responsable : adem.ben-khedher@etudiant.univ-reims.fr</p>
 
     <h2>Propriété intellectuelle :</h2>
     <p>Le contenu de ce site est protégé par les lois sur la propriété intellectuelle. Toute reproduction totale ou partielle sans autorisation est interdite.</p>
 
     <h2>Données personnelles :</h2>
-    <p>Conformément à la loi sur la protection des données, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant. Pour exercer ces droits, veuillez nous contacter à l'adresse email suivante : contact@votreentreprise.com</p>
+    <p>Conformément à la loi sur la protection des données, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant. Pour exercer ces droits, veuillez nous contacter à l'adresse email suivante : adem.ben-khedher@etudiant.univ-reims.fr</p>
 
     <h2>Cookies :</h2>
     <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur. En naviguant sur ce site, vous acceptez l'utilisation de cookies.</p>
@@ -47,8 +73,6 @@
     <h2>Conditions d'utilisation :</h2>
     <p>En utilisant ce site, vous acceptez les conditions d'utilisation énoncées dans ces mentions légales.</p>
 
-    <p>Date de dernière mise à jour : [Date]</p>
-    </body>
-
-
+    <p>Date de dernière mise à jour : 03/12/2023</p>
+    </main>
 {% endblock %}
